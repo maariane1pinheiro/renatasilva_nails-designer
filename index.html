@@ -6,40 +6,81 @@
     <title>Espaço Renata Silva</title>
     <style>
         body {
-            background-color: white;
+            background-color: #CEBAAA; /* Cor de fundo da tela */
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: "Times New Roman", Times, serif; /* Fonte Times New Roman */
             position: relative; /* Para permitir o posicionamento absoluto */
         }
+        .container {
+            width: 80%; /* Largura do quadrado ajustada */
+            max-width: 1000px; /* Limite máximo para telas maiores */
+            height: 400px; /* Altura do quadrado */
+            background-color: rgba(255, 255, 255, 0.8); /* Branco com transparência */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Para permitir o posicionamento absoluto dos elementos internos */
+            text-align: center; /* Centraliza o texto dentro do container */
+            border: none; /* Borda invisível */
+            background-image: url('https://example.com/imagem-podologa.jpg'); /* URL da imagem de podóloga */
+            background-size: cover; /* Faz a imagem cobrir todo o fundo */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat; /* Não repete a imagem */
+        }
         h1 {
-            color: #d8c7a3; /* Cor bege */
+            color: #333; /* Cor do texto do título */
             font-size: 2.5em;
+            margin: 0; /* Remove margem padrão */
+            position: relative; /* Para permitir sobreposição ao fundo */
+            z-index: 1; /* Coloca o texto acima da imagem */
         }
         p {
             color: #333; /* Cor do texto padrão */
             font-size: 1.2em;
+            margin: 0; /* Remove margem padrão */
+            position: relative; /* Para permitir sobreposição ao fundo */
+            z-index: 1; /* Coloca o texto acima da imagem */
         }
         .telefone {
-            position: absolute; /* Posiciona em relação ao body */
-            top: 20px; /* Distância do topo */
-            right: 20px; /* Distância da direita */
+            position: absolute; /* Posiciona em relação ao container */
+            bottom: 20px; /* Distância do fundo */
+            left: 20px; /* Distância da esquerda */
             color: #d4af37; /* Cor dourada */
-            font-size: 1.2em; /* Tamanho da fonte */
+            font-size: 14px; /* Tamanho da fonte */
+            z-index: 1; /* Coloca o texto acima da imagem */
+        }
+        .emoji {
+            font-size: 0.3cm; /* Tamanho dos emojis */
+            display: inline-block; /* Permite controlar o tamanho */
+            vertical-align: middle; /* Alinha verticalmente */
         }
         .instagram {
-            margin-top: 20px; /* Espaço entre o telefone e o Instagram */
+            position: absolute; /* Posiciona em relação ao container */
+            bottom: 20px; /* Distância do fundo */
+            left: 50%; /* Centraliza horizontalmente */
+            transform: translateX(-50%); /* Ajusta a posição para o centro */
+            z-index: 1; /* Coloca o texto acima da imagem */
+        }
+        .instagram-text {
+            font-size: 14px; /* Tamanho da fonte */
+            color: #333; /* Cor do texto */
+            z-index: 1; /* Coloca o texto acima da imagem */
         }
     </style>
 </head>
 <body>
-    <h1>Espaço Renata Silva</h1>
-    <p>Bem-vindo</p>
-    <div class="telefone">Telefone: <span style="color: #d4af37; font-size: 14px;">+55 44 9835-4372 📞</span></div>
-    <div class="instagram">📸</div>
+    <div class="container">
+        <h1>Espaço Renata Silva</h1>
+        <p>Bem-vindo</p>
+        <div class="telefone">Telefone: <span style="color: #d4af37; font-size: 14px;">+55 44 9835-4372 <span class="emoji">📞</span></span></div>
+        <div class="instagram">
+            <span class="emoji">📸</span> <span class="instagram-text">renatasilva_naildesigner</span>
+        </div>
+    </div>
 </body>
 </html>
