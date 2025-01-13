@@ -40,6 +40,40 @@
         .button:hover {
             background-color: #d48aae;
         }
+
+        /* Estilos do modal */
+        .modal {
+            display: none; /* Escondido por padrão */
+            position: fixed; /* Fixo */
+            z-index: 1; /* Fica na frente */
+            left: 0;
+            top: 0;
+            width: 100%; /* Largura completa */
+            height: 100%; /* Altura completa */
+            overflow: auto; /* Habilita scroll se necessário */
+            background-color: rgb(0,0,0); /* Cor de fundo */
+            background-color: rgba(0,0,0,0.4); /* Fundo semi-transparente */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% do topo e centralizado */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Largura do modal */
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -49,33 +83,75 @@
 
 <button class="button" onclick="goBack()">Voltar à Tela Inicial</button>
 
+<!-- Modal de seleção de horário -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p id="modal-text"></p>
+        <button class="button" id="confirm-button">Confirmar Agendamento</button>
+        <button class="button" onclick="closeModal()">Cancelar</button>
+    </div>
+</div>
+
+<!-- Modal de confirmação -->
+<div id="confirmModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeConfirmModal()">&times;</span>
+        <p id="confirm-text"></p>
+        <button class="button" onclick="closeConfirmModal()">Fechar</button>
+    </div>
+</div>
+
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     const date = urlParams.get('date');
     document.title = `Horários para ${date}`;
 
     const hoursContainer = document.getElementById('available-hours');
+    const modal = document.getElementById("myModal");
+    const confirmModal = document.getElementById("confirmModal");
+    const modalText = document.getElementById("modal-text");
+    const confirmText = document.getElementById("confirm-text");
+    const confirmButton = document.getElementById("confirm-button");
+    let selectedHour;
+
     for (let i = 9; i <= 19; i++) {
         const hourDiv = document.createElement('div');
         hourDiv.className = 'hour';
         hourDiv.textContent = `${i}:00`;
         hourDiv.onclick = function() {
-            const confirmAgendamento = confirm(`Você gostaria de agendar para ${i}:00 no dia ${date}?`);
-            if (confirmAgendamento) {
-                alert(`Agendamento confirmado para ${i}:00 no dia ${date}.`);
-            } else {
-                alert('Agendamento cancelado.');
-            }
+            selectedHour = i; // Salva a hora selecionada
+            modalText.textContent = `Você gostaria de agendar para ${i}:00 no dia ${date}?`;
+            modal.style.display = "block"; // Mostra o modal
         };
         hoursContainer.appendChild(hourDiv);
     }
 
+    function closeModal() {
+        modal.style.display = "none"; // Esconde o modal
+    }
+
+    function closeConfirmModal() {
+        confirmModal.style.display = "none"; // Esconde o modal de confirmação
+    }
+
+    confirmButton.onclick = function() {
+        confirmText.textContent = `Agradecemos sua preferência! Agendamento confirmado para ${selectedHour}:00 no dia ${date}.`;
+        confirmModal.style.display = "block"; // Mostra o modal de confirmação
+        closeModal(); // Fecha o modal de seleção
+    };
+
     function goBack() {
-        // Abre a página inicial com o mês atual
-        const currentMonth = new URLSearchParams(window.location.search).get('month');
-        const monthIndex = ['janeiro', 'fevereiro', 'marco', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'].indexOf(currentMonth);
-        const url = `index.html?month=${monthIndex}`;
-        window.open(url, '_self'); // Muda a aba atual
+        window.location.href = "index.html"; // Substitua "index.html" pelo nome do seu arquivo de tela inicial
+    }
+
+    // Fecha o modal se o usuário clicar fora dele
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        } else if (event.target == confirmModal) {
+            closeConfirmModal();
+        }
     }
 </script>
 
