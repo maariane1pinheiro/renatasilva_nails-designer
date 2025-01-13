@@ -3,84 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espaço Renata Silva</title>
+    <title>Horários Disponíveis</title>
     <style>
         body {
-            background-color: #CEBAAA; /* Cor de fundo da tela */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
             margin: 0;
-            font-family: "Times New Roman", Times, serif; /* Fonte Times New Roman */
-            position: relative; /* Para permitir o posicionamento absoluto */
-        }
-        .container {
-            width: 80%; /* Largura do quadrado ajustada */
-            max-width: 1000 px; /* Limite máximo para telas maiores */
-            height: 400 px; /* Altura do quadrado */
-            background-color: rgba (255, 255, 255, 0.8); /* Branco com transparência */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative; /* Para permitir o posicionamento absoluto dos elementos internos */
-            text-align: center; /* Centraliza o texto dentro do container */
-            border: none; /* Borda invisível */
-            background-image: url('https://example.com/imagem-podologa.jpg'); /* URL da imagem de podóloga */
-            background-size: cover; /* Faz a imagem cobrir todo o fundo */
-            background-position: center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Não repete a imagem */
+            padding: 20px;
         }
         h1 {
-            color: CFC5BF; /* Cor do texto do título */
-            font-size: 2.5em;
-            margin: 0; /* Remove margem padrão */
-            position: relative; /* Para permitir sobreposição ao fundo */
-            z-index: 1; /* Coloca o texto acima da imagem */
+            text-align: center;
         }
-        p {
-            color: CFC5BF; /* Cor do texto padrão */
-            font-size: 1.2em;
-            margin: 0; /* Remove margem padrão */
-            position: relative; /* Para permitir sobreposição ao fundo */
-            z-index: 1; /* Coloca o texto acima da imagem */
+        .hour {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            background-color: #f0a3c7;
+            color: white;
+            cursor: pointer;
         }
-        .telefone {
-            position: absolute; /* Posiciona em relação ao container */
-            bottom: 20px; /* Distância do fundo */
-            left: 20px; /* Distância da esquerda */
-            color: #d4af37; /* Cor dourada */
-            font-size: 14px; /* Tamanho da fonte */
-            z-index: 1; /* Coloca o texto acima da imagem */
+        .hour:hover {
+            background-color: #d48aae;
         }
-        .emoji {
-            font-size: 0.3cm; /* Tamanho dos emojis */
-            display: inline-block; /* Permite controlar o tamanho */
-            vertical-align: middle; /* Alinha verticalmente */
+        .button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0a3c7;
+            color: white;
+            cursor: pointer;
+            text-align: center;
         }
-        .instagram {
-            position: absolute; /* Posiciona em relação ao container */
-            bottom: 20 px; /* Distância do fundo */
-            left: 50%; /* Centraliza horizontalmente */
-            transform: translateX(-50%); /* Ajusta a posição para o centro */
-            z-index: 1; /* Coloca o texto acima da imagem */
-        }
-        .instagram-text {
-            font-size: 14 px; /* Tamanho da fonte */
-            color: CFC5BF; /* Cor do texto */
-            z-index: 1; /* Coloca o texto acima da imagem */
+        .button:hover {
+            background-color: #d48aae;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Espaço Renata Silva</h1>
-        <p>Bem-vindo</p>
-        <div class="telefone">Telefone: <span style="color: CFC5BF; font-size: 16 px;">+55 44 9835-4372 <span class="emoji">📞</span></span></div>
-        <div class="instagram">
-            <span class="emoji">📸</span> <span class="instagram-text">renatasilva_naildesigner</span>
-        </div>
-    </div>
+
+<h1>Horários Disponíveis</h1>
+<div id="available-hours"></div>
+
+<button class="button" onclick="goBack()">Voltar à Tela Inicial</button>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const date = urlParams.get('date');
+    document.title = `Horários para ${date}`;
+
+    const hoursContainer = document.getElementById('available-hours');
+    for (let i = 9; i <= 19; i++) {
+        const hourDiv = document.createElement('div');
+        hourDiv.className = 'hour';
+        hourDiv.textContent = `${i}:00`;
+        hourDiv.onclick = function() {
+            const confirmAgendamento = confirm(`Você gostaria de agendar para ${i}:00 no dia ${date}?`);
+            if (confirmAgendamento) {
+                alert(`Agendamento confirmado para ${i}:00 no dia ${date}.`);
+            } else {
+                alert('Agendamento cancelado.');
+            }
+        };
+        hoursContainer.appendChild(hourDiv);
+    }
+
+    function goBack() {
+        window.location.href = "index.html"; // Substitua "index.html" pelo nome do seu arquivo de tela inicial
+    }
+</script>
+
 </body>
 </html>
