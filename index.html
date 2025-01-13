@@ -9,12 +9,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fdfdfd;
-            color: #333;
+            background-color: #f8f9fa; /* Tom pastel claro */
+            color: #343a40; /* Texto em um tom escuro suave */
             line-height: 1.6;
         }
         header {
-            background-color: #f0a3c7;
+            background-color: #e9ecef; /* Cinza claro */
             padding: 30px;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -25,23 +25,26 @@
         }
         .slogan {
             font-style: italic;
-            color: #fff;
+            color: #6c757d; /* Cinza médio */
             font-size: 1.2rem;
         }
-        .contact, .gallery, .agenda {
+        .container {
             margin: 20px auto;
             max-width: 800px;
             padding: 20px;
-            background-color: #fff;
+            background-color: #ffffff; /* Branco para limpeza */
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .contact input {
+        .contact, .gallery, .agenda, .reservation {
+            margin: 20px 0;
+        }
+        .contact input, .reservation input {
             padding: 10px;
-            margin: 5px;
-            border: 1px solid #ddd;
+            margin: 5px 0;
+            border: 1px solid #ced4da; /* Cinza suave */
             border-radius: 5px;
-            width: calc(50% - 20px);
+            width: calc(100% - 22px);
             box-sizing: border-box;
         }
         .gallery {
@@ -79,7 +82,7 @@
         }
         .day {
             padding: 20px;
-            background-color: #f0a3c7;
+            background-color: #6c757d; /* Cinza médio */
             color: white;
             border-radius: 5px;
             text-align: center;
@@ -87,7 +90,7 @@
             transition: background-color 0.3s;
         }
         .day:hover {
-            background-color: #d48aae;
+            background-color: #5a6268; /* Tom mais escuro ao passar o mouse */
         }
         .navigation {
             margin: 20px;
@@ -97,13 +100,13 @@
             margin: 0 10px;
             border: none;
             border-radius: 5px;
-            background-color: #f0a3c7;
+            background-color: #6c757d; /* Cinza médio */
             color: white;
             cursor: pointer;
             transition: background-color 0.3s;
         }
         .button:hover {
-            background-color: #d48aae;
+            background-color: #5a6268; /* Tom mais escuro ao passar o mouse */
         }
 
         /* Estilos do modal */
@@ -139,6 +142,35 @@
             color: black;
             text-decoration: none;
             cursor: pointer;
+        }
+
+        /* Estilos da seção de unidades */
+        .units {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .units h2 {
+            font-size: 2rem;
+            margin: 0;
+        }
+        .units p {
+            font-size: 1.2rem;
+            margin: 5px 0 0;
+        }
+        /* Estilos da linha de navegação */
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .nav-links a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007bff; /* Azul padrão */
+            font-weight: bold;
+        }
+        .nav-links a:hover {
+            text-decoration: underline; /* Sublinhado ao passar o mouse */
         }
     </style>
     <script>
@@ -201,123 +233,147 @@
     <p class="slogan">Renata Silva</p>
 </header>
 
-<div class="contact">
-    <h2>Contato</h2>
-    <input type="text" placeholder="Telefone" value="+55 44 9835-4372" readonly />
-    <input type="text" placeholder="Instagram" value="renatasilva_naildesigner" readonly />
-    <a href="https://bit.ly/2HYUD2y" target="_blank">
-        <button class="button">Fale Conosco</button>
-    </a>
-</div>
+<div class="container">
 
-<div class="gallery">
-    <h2>Galeria</h2>
-    <img src="https://via.placeholder.com/150" alt="Imagem 1" />
-    <img src="https://via.placeholder.com/150" alt="Imagem 2" />
-    <img src="https://via.placeholder.com/150" alt="Imagem 3" />
-    <img src="https://via.placeholder.com/150" alt="Imagem 4" />
-    <img src="https://via.placeholder.com/150" alt="Imagem 5" />
-    <img src="https://via.placeholder.com/150" alt="Imagem 6" />
-</div>
-
-<div class="agenda">
-    <h2>Agenda 2025</h2>
-    <div class="navigation">
-        <button class="button" onclick="changeMonth(-1)">Anterior</button>
-        <button class="button" onclick="changeMonth(1)">Próximo</button>
+    <div class="contact">
+        <h2>Contato</h2>
+        <input type="text" placeholder="Telefone" value="+55 44 9835-4372" readonly />
+        <input type="text" placeholder="Instagram" value="renatasilva_naildesigner" readonly />
+        <a href="https://bit.ly/2HYUD2y" target="_blank">
+            <button class="button">Fale Conosco</button>
+        </a>
     </div>
-    <div id="months">
-        <div class="month active" id="janeiro">
-            <h3>Janeiro 2025</h3>
-            <div class="days">
-                <div class="day" onclick="openAvailableHours(1)">1</div>
-                <div class="day" onclick="openAvailableHours(2)">2</div>
-                <div class="day" onclick="openAvailableHours(3)">3</div>
-                <div class="day" onclick="openAvailableHours(4)">4</div>
-                <div class="day" onclick="openAvailableHours(5)">5</div>
-                <div class="day" onclick="openAvailableHours(6)">6</div>
-                <div class="day" onclick="openAvailableHours(7)">7</div>
-                <div class="day" onclick="openAvailableHours(8)">8</div>
-                <div class="day" onclick="openAvailableHours(9)">9</div>
-                <div class="day" onclick="openAvailableHours(10)">10</div>
-                <div class="day" onclick="openAvailableHours(11)">11</div>
-                <div class="day" onclick="openAvailableHours(12)">12</div>
-                <div class="day" onclick="openAvailableHours(13)">13</div>
-                <div class="day" onclick="openAvailableHours(14)">14</div>
-                <div class="day" onclick="openAvailableHours(15)">15</div>
-                <div class="day" onclick="openAvailableHours(16)">16</div>
-                <div class="day" onclick="openAvailableHours(17)">17</div>
-                <div class="day" onclick="openAvailableHours(18)">18</div>
-                <div class="day" onclick="openAvailableHours(19)">19</div>
-                <div class="day" onclick="openAvailableHours(20)">20</div>
-                <div class="day" onclick="openAvailableHours(21)">21</div>
-                <div class="day" onclick="openAvailableHours(22)">22</div>
-                <div class="day" onclick="openAvailableHours(23)">23</div>
-                <div class="day" onclick="openAvailableHours(24)">24</div>
-                <div class="day" onclick="openAvailableHours(25)">25</div>
-                <div class="day" onclick="openAvailableHours(26)">26</div>
-                <div class="day" onclick="openAvailableHours(27)">27</div>
-                <div class="day" onclick="openAvailableHours(28)">28</div>
-                <div class="day" onclick="openAvailableHours(29)">29</div>
-                <div class="day" onclick="openAvailableHours(30)">30</div>
-                <div class="day" onclick="openAvailableHours(31)">31</div>
-            </div>
+
+    <div class="reservation">
+        <h2>Reserva de Data</h2>
+        <input type="text" placeholder="Nome Completo" required />
+        <input type="tel" placeholder="Telefone" required />
+        <input type="email" placeholder="E-mail" required />
+    </div>
+
+    <div class="gallery">
+        <h2>Galeria</h2>
+        <img src="https://i.imgur.com/EXEMPLO.jpg" alt="Re.unhas De Gel Maringá" /> <!-- Insira a URL da imagem aqui -->
+        <img src="https://via.placeholder.com/150" alt="Imagem 2" />
+        <img src="https://via.placeholder.com/150" alt="Imagem 3" />
+        <img src="https://via.placeholder.com/150" alt="Imagem 4" />
+        <img src="https://via.placeholder.com/150" alt="Imagem 5" />
+        <img src="https://via.placeholder.com/150" alt="Imagem 6" />
+    </div>
+
+    <div class="agenda">
+        <h2>Agenda 2025</h2>
+        <div class="navigation">
+            <button class="button" onclick="changeMonth(-1)">Anterior</button>
+            <button class="button" onclick="changeMonth(1)">Próximo</button>
         </div>
-        <div class="month" id="fevereiro">
-            <h3>Fevereiro 2025</h3>
-            <div class="days">
-                <div class="day" onclick="openAvailableHours(1)">1</div>
-                <div class="day" onclick="openAvailableHours(2)">2</div>
-                <div class="day" onclick="openAvailableHours(3)">3</div>
-                <div class="day" onclick="openAvailableHours(4)">4</div>
-                <div class="day" onclick="openAvailableHours(5)">5</div>
-                <div class="day" onclick="openAvailableHours(6)">6</div>
-                <div class="day" onclick="openAvailableHours(7)">7</div>
-                <div class="day" onclick="openAvailableHours(8)">8</div>
-                <div class="day" onclick="openAvailableHours(9)">9</div>
-                <div class="day" onclick="openAvailableHours(10)">10</div>
-                <div class="day" onclick="openAvailableHours(11)">11</div>
-                <div class="day" onclick="openAvailableHours(12)">12</div>
-                <div class="day" onclick="openAvailableHours(13)">13</div>
-                <div class="day" onclick="openAvailableHours(14)">14</div>
-                <div class="day" onclick="openAvailableHours(15)">15</div>
-                <div class="day" onclick="openAvailableHours(16)">16</div>
-                <div class="day" onclick="openAvailableHours(17)">17</div>
-                <div class="day" onclick="openAvailableHours(18)">18</div>
-                <div class="day" onclick="openAvailableHours(19)">19</div>
-                <div class="day" onclick="openAvailableHours(20)">20</div>
-                <div class="day" onclick="openAvailableHours(21)">21</div>
-                <div class="day" onclick="openAvailableHours(22)">22</div>
-                <div class="day" onclick="openAvailableHours(23)">23</div>
-                <div class="day" onclick="openAvailableHours(24)">24</div>
-                <div class="day" onclick="openAvailableHours(25)">25</div>
-                <div class="day" onclick="openAvailableHours(26)">26</div>
-                <div class="day" onclick="openAvailableHours(27)">27</div>
-                <div class="day" onclick="openAvailableHours(28)">28</div>
-                <div class="day" onclick="openAvailableHours(29)">29</div>
+        <div id="months">
+            <div class="month active" id="janeiro">
+                <h3>Janeiro 2025</h3>
+                <div class="days">
+                    <div class="day" onclick="openAvailableHours(1)">1</div>
+                    <div class="day" onclick="openAvailableHours(2)">2</div>
+                    <div class="day" onclick="openAvailableHours(3)">3</div>
+                    <div class="day" onclick="openAvailableHours(4)">4</div>
+                    <div class="day" onclick="openAvailableHours(5)">5</div>
+                    <div class="day" onclick="openAvailableHours(6)">6</div>
+                    <div class="day" onclick="openAvailableHours(7)">7</div>
+                    <div class="day" onclick="openAvailableHours(8)">8</div>
+                    <div class="day" onclick="openAvailableHours(9)">9</div>
+                    <div class="day" onclick="openAvailableHours(10)">10</div>
+                    <div class="day" onclick="openAvailableHours(11)">11</div>
+                    <div class="day" onclick="openAvailableHours(12)">12</div>
+                    <div class="day" onclick="openAvailableHours(13)">13</div>
+                    <div class="day" onclick="openAvailableHours(14)">14</div>
+                    <div class="day" onclick="openAvailableHours(15)">15</div>
+                    <div class="day" onclick="openAvailableHours(16)">16</div>
+                    <div class="day" onclick="openAvailableHours(17)">17</div>
+                    <div class="day" onclick="openAvailableHours(18)">18</div>
+                    <div class="day" onclick="openAvailableHours(19)">19</div>
+                    <div class="day" onclick="openAvailableHours(20)">20</div>
+                    <div class="day" onclick="openAvailableHours(21)">21</div>
+                    <div class="day" onclick="openAvailableHours(22)">22</div>
+                    <div class="day" onclick="openAvailableHours(23)">23</div>
+                    <div class="day" onclick="openAvailableHours(24)">24</div>
+                    <div class="day" onclick="openAvailableHours(25)">25</div>
+                    <div class="day" onclick="openAvailableHours(26)">26</div>
+                    <div class="day" onclick="openAvailableHours(27)">27</div>
+                    <div class="day" onclick="openAvailableHours(28)">28</div>
+                    <div class="day" onclick="openAvailableHours(29)">29</div>
+                    <div class="day" onclick="openAvailableHours(30)">30</div>
+                    <div class="day" onclick="openAvailableHours(31)">31</div>
+                </div>
             </div>
+            <div class="month" id="fevereiro">
+                <h3>Fevereiro 2025</h3>
+                <div class="days">
+                    <div class="day" onclick="openAvailableHours(1)">1</div>
+                    <div class="day" onclick="openAvailableHours(2)">2</div>
+                    <div class="day" onclick="openAvailableHours(3)">3</div>
+                    <div class="day" onclick="openAvailableHours(4)">4</div>
+                    <div class="day" onclick="openAvailableHours(5)">5</div>
+                    <div class="day" onclick="openAvailableHours(6)">6</div>
+                    <div class="day" onclick="openAvailableHours(7)">7</div>
+                    <div class="day" onclick="openAvailableHours(8)">8</div>
+                    <div class="day" onclick="openAvailableHours(9)">9</div>
+                    <div class="day" onclick="openAvailableHours(10)">10</div>
+                    <div class="day" onclick="openAvailableHours(11)">11</div>
+                    <div class="day" onclick="openAvailableHours(12)">12</div>
+                    <div class="day" onclick="openAvailableHours(13)">13</div>
+                    <div class="day" onclick="openAvailableHours(14)">14</div>
+                    <div class="day" onclick="openAvailableHours(15)">15</div>
+                    <div class="day" onclick="openAvailableHours(16)">16</div>
+                    <div class="day" onclick="openAvailableHours(17)">17</div>
+                    <div class="day" onclick="openAvailableHours(18)">18</div>
+                    <div class="day" onclick="openAvailableHours(19)">19</div>
+                    <div class="day" onclick="openAvailableHours(20)">20</div>
+                    <div class="day" onclick="openAvailableHours(21)">21</div>
+                    <div class="day" onclick="openAvailableHours(22)">22</div>
+                    <div class="day" onclick="openAvailableHours(23)">23</div>
+                    <div class="day" onclick="openAvailableHours(24)">24</div>
+                    <div class="day" onclick="openAvailableHours(25)">25</div>
+                    <div class="day" onclick="openAvailableHours(26)">26</div>
+                    <div class="day" onclick="openAvailableHours(27)">27</div>
+                    <div class="day" onclick="openAvailableHours(28)">28</div>
+                    <div class="day" onclick="openAvailableHours(29)">29</div>
+                </div>
+            </div>
+            <!-- Continue para os outros meses -->
         </div>
-        <!-- Continue para os outros meses -->
     </div>
-</div>
 
-<!-- Modal de seleção de horário -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <p id="modal-text"></p>
-        <button class="button" onclick="confirmAppointment()">Confirmar Agendamento</button>
-        <button class="button" onclick="closeModal()">Cancelar</button>
+    <!-- Modal de seleção de horário -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modal-text"></p>
+            <button class="button" onclick="confirmAppointment()">Confirmar Agendamento</button>
+            <button class="button" onclick="closeModal()">Cancelar</button>
+        </div>
     </div>
-</div>
 
-<!-- Modal de confirmação -->
-<div id="confirmModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeConfirmModal()">&times;</span>
-        <p id="confirm-text"></p>
-        <button class="button" onclick="closeConfirmModal()">Fechar</button>
+    <!-- Modal de confirmação -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeConfirmModal()">&times;</span>
+            <p id="confirm-text"></p>
+            <button class="button" onclick="closeConfirmModal()">Fechar</button>
+        </div>
     </div>
+
+    <!-- Seção de unidades -->
+    <div class="units">
+        <h2>CONHEÇA NOSSAS UNIDADES</h2>
+        <p>R. Benjamin Constant, 189 - 1 - Zona 7</p>
+        <div class="nav-links">
+            <a href="#sobre">Sobre</a>
+            <a href="#tratamentos">Tratamentos</a>
+            <a href="#depoimentos">Depoimentos</a>
+            <a href="#blog">Blog</a>
+            <a href="#unidades">Unidades</a>
+        </div>
+    </div>
+
 </div>
 
 </body>
