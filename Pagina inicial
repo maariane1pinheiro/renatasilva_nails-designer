@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espaço Renata Silva</title>
+    <style>
+        body {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #d8c7a3; /* Cor bege */
+            font-size: 2.5em;
+        }
+        p {
+            color: #333; /* Cor do texto padrão */
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Espaço Renata Silva</h1>
+    <p>Bem-vindo</p>
+</body>
+</html>
